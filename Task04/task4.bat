@@ -10,7 +10,7 @@ echo " "
 
 echo "2. Найти 10 самых свежих оценок от разных пользователей, вывести названия фильмов, имена пользователей, оценку, дату отзыва в формате ГГГГ-ММ-ДД."
 echo --------------------------------------------------
-sqlite3 movies_rating.db -box -echo "select distinct date(r.timestamp, 'unixepoch') as rated_at, u.name, r.rating from ratings r join users u on r.user_id = u.id group by u.name order by rated_at desc limit 10;"
+sqlite3 movies_rating.db -box -echo "select distinct m.title, u.name, r.rating, date(r.timestamp, 'unixepoch') as rated_at from ratings r join users u on r.user_id = u.id join movies m on r.movie_id = m.id group by u.name order by rated_at desc limit 10;"
 echo " "
 
 echo "3. Вывести в одном списке все фильмы с максимальным средним рейтингом и все фильмы с минимальным средним рейтингом. Общий список отсортировать по году выпуска и названию фильма. В зависимости от рейтинга в колонке "Рекомендуем" для фильмов должно быть написано "Да" или "Нет"."
