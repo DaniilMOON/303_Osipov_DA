@@ -21,8 +21,13 @@ $id_service_car_category = $event->getIdSCC($id_service, $id_car_category);
 
 $time_work = $event->getByusyness($id_worker);
 
+$time = null;
+$price = null;
+foreach ($id_service_car_category as $item):
+    $time = $item['duration_in_hours'];
+    $price = $item['price'];
+endforeach;
 ?>
-
 
 <form method="post" enctype="application/x-www-form-urlencoded" action="add_orders_fourth.php">
     <legend style="font-size:24px">Услуга:
@@ -30,6 +35,7 @@ $time_work = $event->getByusyness($id_worker);
         <?php foreach ($name_of_service as $name_s): ?>
             <?= $name_s['name_of_service']; ?>
         <?php endforeach; ?>
+        <?php print(", время выполнения в часах: ". $time . ", стоимось в рублях: " . $price); ?>
     </legend>
 
     <legend style="font-size:24px">Категория транспорта:

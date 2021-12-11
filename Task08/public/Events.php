@@ -103,7 +103,7 @@ class Events
 
     public function getIdSCC(String $id_service, String $id_car_category)
     {
-        $query = 'select id from services_car_categories where service_id = ' . $id_service .
+        $query = 'select id, duration_in_hours, price from services_car_categories where service_id = ' . $id_service .
             ' and car_category_id = ' . $id_car_category . ';';
         $statement = $this->pdo->query($query);
         $rows = $statement->fetchAll();
