@@ -94,7 +94,17 @@ class Events
     public function getByusynessData(String $id_worker, String $data)
     {
         $query = 'select service_execution_time from orders o where worker_id = ' . $id_worker .
-            ' and substr(service_execution_time, 1,  10) = "' . '2021-11-13' . '";';
+            ' and substr(service_execution_time, 1,  10) = "' . $data . '";';
+        $statement = $this->pdo->query($query);
+        $rows = $statement->fetchAll();
+        $statement->closeCursor();
+        return $rows;
+    }
+
+    public function getIdSCC(String $id_service, String $id_car_category)
+    {
+        $query = 'select id from services_car_categories where service_id = ' . $id_service .
+            ' and car_category_id = ' . $id_car_category . ';';
         $statement = $this->pdo->query($query);
         $rows = $statement->fetchAll();
         $statement->closeCursor();

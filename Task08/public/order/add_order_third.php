@@ -17,7 +17,7 @@ $worker = $event->getWorkerForID($id_worker);
 $id_car_category = $_POST['id_car_category'];
 $car_category = $event->getCarCategoriesId($id_car_category);
 
-//$id_service_car_category = $event->getIdSCC($id_worker, );
+$id_service_car_category = $event->getIdSCC($id_service, $id_car_category);
 
 $time_work = $event->getByusyness($id_worker);
 
@@ -46,6 +46,9 @@ $time_work = $event->getByusyness($id_worker);
         <?php endforeach; ?>
     </legend>
     <hr>
+    <?php foreach ($id_service_car_category as $item): ?>
+        <input type="hidden" name="id_service_car_category" value="<?= $item['id'] ?>">
+    <?php endforeach; ?>
 
     <legend style="font-size:24px">Рабочие дни:
         <br>
